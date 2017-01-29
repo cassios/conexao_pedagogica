@@ -1,0 +1,102 @@
+<%= form_for(pedagogy_innovation) do |f| %>
+  <% if pedagogy_innovation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(pedagogy_innovation.errors.count, "error") %> prohibited this pedagogy_innovation from being saved:</h2>
+
+      <ul>
+      <% pedagogy_innovation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= f.label :achievements %>
+    <%= f.text_area :achievements %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :lat %>
+    <%= f.text_field :latitude %>
+  </div>
+  <div class="field">
+    <%= f.label :long %>
+    <%= f.text_field :longitude %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit "Submeter" %>
+  </div>
+<% end %>
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyAtI19-Mk6uAay1iiOoRx40qa-KNON2YIc"></script>
+<div class="banner" id="map_canvas" style="height: 400px; width: 100%">
+  <script>
+    // global "map" variable
+    var map = null;
+    var marker = null;
+    var infowindow = new google.maps.InfoWindow({ 
+      size: new google.maps.Size(150,50)
+    });
+
+    function initialize() {
+      // create the map
+      var myOptions = {
+        zoom: 11,
+        center: new google.maps.LatLng(-19.9,-43.9521707),
+        mapTypeControl: true,
+        mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.DROPDOWN_MENU},
+        navigationControl: true,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      }
+      map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+     
+      google.maps.event.addListener(map, 'click', function() {
+        infowindow.close();
+      });
+
+      google.maps.event.addListener(map, 'click', function(event) {
+      //call function to create marker
+        if (marker) {
+          marker.setMap(null);
+          marker = null;
+        }
+        marker = createMarker(event.latLng, "name", "<b>Location</b><br>"+event.latLng);
+        var lat_field = document.getElementById("pedagogy_innovation_latitude");
+        lat_field.value = event.latLng.lat();
+        var lng_field = document.getElementById("pedagogy_innovation_longitude");
+        lng_field.value = event.latLng.lng();
+      });
+    }
+
+    // A function to create the marker and set up the event window function 
+    function createMarker(latlng, name, html) {
+        var contentString = html;
+        var marker = new google.maps.Marker({
+            position: latlng,
+            map: map,
+            zIndex: Math.round(latlng.lat()*-100000)<<5
+        });
+
+        google.maps.event.addListener(marker, 'click', function() {
+            infowindow.setContent(contentString); 
+            infowindow.open(map,marker);
+        });
+        google.maps.event.trigger(marker, 'click');    
+        return marker;
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+  </script>
+</div>
+

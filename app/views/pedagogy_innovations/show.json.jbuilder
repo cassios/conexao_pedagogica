@@ -1,0 +1,1 @@
+json.partial! "pedagogy_innovations/pedagogy_innovation", pedagogy_innovation: @pedagogy_innovation

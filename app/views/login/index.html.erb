@@ -1,0 +1,43 @@
+
+<%= render '/layouts/header/' %>
+<!-- login -->
+<div class="login-page">
+	<div class="container">
+		<div class="account_grid">
+			<div class="col-md-6 login-left wow fadeInLeft" data-wow-delay="0.4s">
+				<h3>NOVOS USUÁRIOS</h3>
+				<p>Após criar uma conta você poderá cadastrar inovações pedagógicas, comentar inovações cadastradas, evoluir seu status dentro da rede, dentre outras funcionalidades.</p>
+				<%= link_to 'Criar conta', new_user_path, class: "acount-btn" %>
+			</div>
+			<div class="col-md-6 login-right wow fadeInRight" data-wow-delay="0.4s">
+				<h3>Usuários Cadastrados</h3>
+				<p>Se você tem uma conta na nossa plataforma, log in.</p>
+
+				<%= form_for :login, method: :post do |f| %>
+					<% if not flash[:error].nil? %>
+						<div id="error_explanation">
+							<h2> Erro: </h2>
+							<h4><%= flash[:error] %></h4>
+						</div>
+					<% end %>
+
+					<div class="field">
+						<%= f.label :email %>
+						<%= f.text_field :email %>
+					</div>
+
+					<div class="field">
+						<%= f.label :senha %>
+						<%= f.password_field :password %>
+					</div>
+
+					<div class="actions">
+						<%= f.submit %>
+					</div>
+				<% end %>
+			</div>	
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+</div>
+<!-- login -->

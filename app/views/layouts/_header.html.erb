@@ -1,0 +1,48 @@
+<!-- banner -->
+<div class="header">
+	<div class="container">
+		<div class="logo">
+			<%= link_to home_index_path do %>
+				<img src="/assets/logo.png" class="img-responsive" alt="">
+			<% end %>
+		</div>
+
+		<div class="header-left">
+			<div class="head-right">
+				<ul class="number">
+					<li>
+						<%= link_to 'Home', home_index_path %>
+					</li>
+					<li>
+						<%= link_to 'Cadastrar Inovação', new_pedagogy_innovation_path %>
+					</li>
+					<% if @_current_user %>
+						<li>
+							<%= link_to user_path(@_current_user) do %>
+								<i class="roc"> </i>Minha Conta
+							<% end %>
+						</li>
+						<li>
+							<%= link_to logout_path, method: :delete do %>
+								<i class="phone"> </i>Logout
+							<% end %>
+						</li>
+					<% else %>
+						<li>
+							<%= link_to login_index_path do %>
+								<i class="phone"> </i>Minha conta
+							<% end %>
+						</li>
+						<li>
+							<%= link_to login_index_path do %>
+								<i class="phone"> </i>Login
+							<% end %>
+						</li>
+					<% end %>
+					<div class="clearfix"> </div>						
+				</ul>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+</div>

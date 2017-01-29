@@ -1,0 +1,2 @@
+module PedagogyInnovationsHelper
+end

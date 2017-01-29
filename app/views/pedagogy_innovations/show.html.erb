@@ -1,0 +1,27 @@
+
+<%= render '/layouts/header/' %>
+
+<p id="notice"><%= notice %></p>
+<div class="login-page">
+	<p>
+	  <strong>Title:</strong>
+	  <%= @pedagogy_innovation.title %>
+	</p>
+
+	<p>
+	  <strong>Description:</strong>
+	  <%= @pedagogy_innovation.description %>
+	</p>
+
+	<p>
+	  <strong>Achievements:</strong>
+	  <%= @pedagogy_innovation.achievements %>
+	</p>
+
+	<p>
+	  <strong>User:</strong>
+	  <%= @pedagogy_innovation.user.name %>
+	</p>
+
+	<%= link_to 'Edit', edit_pedagogy_innovation_path(@pedagogy_innovation) %>
+</div>

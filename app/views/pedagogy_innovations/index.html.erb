@@ -1,0 +1,36 @@
+
+<%= render '/layouts/header/' %>
+
+<p id="notice"><%= notice %></p>
+
+<h1>Pedagogy Innovations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Achievements</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pedagogy_innovations.each do |pedagogy_innovation| %>
+      <tr>
+        <td><%= pedagogy_innovation.title %></td>
+        <td><%= pedagogy_innovation.description %></td>
+        <td><%= pedagogy_innovation.achievements %></td>
+        <td><%= pedagogy_innovation.user %></td>
+        <td><%= link_to 'Show', pedagogy_innovation %></td>
+        <td><%= link_to 'Edit', edit_pedagogy_innovation_path(pedagogy_innovation) %></td>
+        <td><%= link_to 'Destroy', pedagogy_innovation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Pedagogy Innovation', new_pedagogy_innovation_path %>

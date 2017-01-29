@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Conexão Pedagógica | Home </title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+	<%= stylesheet_link_tag "bootstrap" %>
+	<%= stylesheet_link_tag "style" %>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="Conexao Pedagogica, rede educadores, inovacoe pedagogicas" />
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800,600,300' rel='stylesheet' type='text/css'>
+	<%= javascript_include_tag "jquery.min" %>
+	<!-- Mega Menu -->
+	<%= stylesheet_link_tag "megamenu" %>
+	<%= javascript_include_tag "megamenu" %>
+	<script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
+  </head>
+
+  <body>
+    <%= yield %>
+    <div class="footer">
+    	<div class="footer-bottom">
+    		<p>Copyrights © 2015 Location All rights reserved | Template by <a href="http://w3layouts.com/">&nbsp; W3layouts</a></p>
+    	</div>
+    </div>
+  </body>
+</html>

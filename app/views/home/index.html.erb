@@ -1,0 +1,69 @@
+
+<%= render '/layouts/header/' %>
+
+<% if not flash[:error].nil? %>
+	<div id="error_explanation">
+		<h2> Erro: </h2>
+		<h4><%= flash[:error] %></h4>
+	</div>
+<% end %>
+<div class="banner" id="map" style="height: 500px; width: 100%">
+	<script>
+		function initMap() {
+			var bh = {lat: -19.9, lng: -43.9521707};
+			var map = new google.maps.Map(document.getElementById('map'), {
+				zoom: 12,
+				center: bh
+			});
+			var coordinates= <%= @coordinates.to_json.html_safe %>;
+			var infowindow = new google.maps.InfoWindow();
+			var marker;
+			for (var key in coordinates) {
+			  	if (coordinates.hasOwnProperty(key)) {
+					var elem = coordinates[key];
+	    			marker = new google.maps.Marker({
+						position: new google.maps.LatLng(elem['latitude'], elem['longitude']),
+						map: map
+					});
+					google.maps.event.addListener(marker, 'click', (function(marker, key) {
+					    return function() {
+					    	infowindow.setContent('<a href="/pedagogy_innovations/' + key + '">' + elem['title'] + '</a><br/>' + 'Disciplina: ' + elem['disciplina']);
+						    infowindow.open(map, marker);
+					    }
+					})(marker, key));
+    			}
+			}
+		}
+	</script>
+	<script async defer	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtI19-Mk6uAay1iiOoRx40qa-KNON2YIc&callback=initMap">	</script>
+</div>
+<div class="banner-info">
+	<div class="container">
+		<div class="reservation">
+			<ul>	
+				<li class="boo">
+					<h4>Drop pin onto the location on map</h4>
+					<div class="clearfix"></div>						
+				</li>
+				<li class="span1_of_1">
+					<div class="section_room">
+						<select id="country" onchange="change_country(this.value)" class="frm-field required">
+							<option value="null">Select Fish</option>
+							<option value="null">Stands out </option>         
+							<option value="AX">where lets</option>
+							<option value="AX">vitae tortor</option>
+						</select>
+					</div>	
+				</li>
+				<li class="span1_of_3">
+					<div class="date_btn">
+						<form action="addlocation.html">
+							<input type="submit" value="Add Location">
+						</form>
+					</div>
+				</li>
+				<div class="clearfix"></div>
+			</ul>
+		</div>
+	</div>
+</div>

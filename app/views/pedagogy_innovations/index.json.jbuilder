@@ -1,0 +1,1 @@
+json.array! @pedagogy_innovations, partial: 'pedagogy_innovations/pedagogy_innovation', as: :pedagogy_innovation
